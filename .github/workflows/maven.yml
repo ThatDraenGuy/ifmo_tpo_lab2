@@ -1,0 +1,52 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "master", "algo_tests" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  run-tests:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Test with Maven
+      run: mvn -B test --file pom.xml
+    - uses: nelonoel/branch-name@v1.0.1
+    - name: Deploy coverage report
+      uses: jsmrcaga/action-netlify-deploy@master
+      with:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        build_directory: aggregate-report/target/site/jacoco-aggregate
+        install_command: "echo Skipping installing the dependencies"
+        build_command: "echo Skipping building the web files"
+        deploy_alias: ${{ env.BRANCH_NAME }}
+    - name: Status check
+      uses: Sibz/github-status-action@v1.1.1
+      with:
+        authToken: ${{ secrets.GITHUB_TOKEN }}
+        context: Netlify preview
+        state: success
+        target_url: ${{ env.NETLIFY_PREVIEW_URL }}
+    - name: Publish Test Report
+      if: success() || failure()
+      uses: scacap/action-surefire-report@v1

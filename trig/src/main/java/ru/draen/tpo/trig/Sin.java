@@ -1,6 +1,8 @@
 package ru.draen.tpo.trig;
 
-public class Sin extends TrigFunction {
+import ru.draen.tpo.core.AppFunction;
+
+public class Sin implements AppFunction {
     private final Cos cos = new Cos();
 
     @Override

@@ -1,12 +1,20 @@
 package ru.draen.tpo.app;
 
 import ru.draen.tpo.core.AppFunction;
-import ru.draen.tpo.log.LogExpression;
-import ru.draen.tpo.trig.TrigExpression;
 
 public class AppExpression implements AppFunction {
-    private final TrigExpression trig = new TrigExpression();
-    private final LogExpression log = new LogExpression();
+    private final TrigExpression trig;
+    private final LogExpression log;
+
+    public AppExpression() {
+        this.trig = new TrigExpression();
+        this.log = new LogExpression();
+    }
+
+    public AppExpression(TrigExpression trig, LogExpression log) {
+        this.trig = trig;
+        this.log = log;
+    }
 
     @Override
     public double calculate(double x, double eps) {

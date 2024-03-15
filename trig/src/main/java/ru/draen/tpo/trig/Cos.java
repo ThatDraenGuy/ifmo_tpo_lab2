@@ -1,21 +1,35 @@
 package ru.draen.tpo.trig;
 
-public class Cos extends TrigFunction {
+import ru.draen.tpo.core.AppFunction;
+
+public class Cos implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
-        x = resolveX(x);
+        x = Math.abs(x);
+
+        x = x % (2 * Math.PI); // 0 <= x <= 2*PI
+        if (x > Math.PI) {
+            x = Math.PI * 2 - x;
+        }
+
+        boolean isNegative = false;
+        if (x > Math.PI / 2) {
+            x = Math.PI - x;
+            isNegative = !isNegative;
+        }
 
         int iteration = 0;
         double result = 0;
 
         double term;
         do {
-            term = getTerm(x, iteration++);
+            term = getTerm(x, iteration);
             result += iteration % 2 == 0 ? term : -term;
-        } while (term > eps);
+            iteration++;
+        } while (term >= eps);
 
-        return result;
+        return isNegative ? -result : result;
     }
 
     private double getTerm(double x, int k) {

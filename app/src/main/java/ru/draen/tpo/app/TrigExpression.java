@@ -1,15 +1,40 @@
-package ru.draen.tpo.trig;
+package ru.draen.tpo.app;
 
 import ru.draen.tpo.core.AppFunction;
+import ru.draen.tpo.trig.Cos;
+import ru.draen.tpo.trig.Cot;
+import ru.draen.tpo.trig.Csc;
+import ru.draen.tpo.trig.Sec;
+import ru.draen.tpo.trig.Sin;
+import ru.draen.tpo.trig.Tan;
+
 import static java.lang.Math.pow;
 
 public class TrigExpression implements AppFunction {
-    private final Sin sin = new Sin();
-    private final Cos cos = new Cos();
-    private final Tan tan = new Tan();
-    private final Cot cot = new Cot();
-    private final Csc csc = new Csc();
-    private final Sec sec = new Sec();
+    private final Sin sin;
+    private final Cos cos;
+    private final Tan tan;
+    private final Cot cot;
+    private final Csc csc;
+    private final Sec sec;
+
+    public TrigExpression() {
+        this.sin = new Sin();
+        this.cos = new Cos();
+        this.tan = new Tan();
+        this.cot = new Cot();
+        this.csc = new Csc();
+        this.sec = new Sec();
+    }
+
+    public TrigExpression(Sin sin, Cos cos, Tan tan, Cot cot, Csc csc, Sec sec) {
+        this.sin = sin;
+        this.cos = cos;
+        this.tan = tan;
+        this.cot = cot;
+        this.csc = csc;
+        this.sec = sec;
+    }
 
     @Override
     public double calculate(double x, double eps) {

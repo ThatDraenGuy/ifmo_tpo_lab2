@@ -1,12 +1,25 @@
 package ru.draen.tpo.trig;
 
-public class Cot extends TrigFunction {
+import ru.draen.tpo.core.AppFunction;
 
-    private final Tan tan = new Tan();
+public class Cot implements AppFunction {
+
+    private final Sin sin = new Sin();
+    private final Cos cos = new Cos();
 
     @Override
     public double calculate(double x, double eps) {
-        return 1.0 / tan.calculate(x, eps);
+
+        double sin = this.sin.calculate(x, eps);
+        double cos = this.cos.calculate(x, eps);
+
+        if (Math.abs(sin) < 0.001 && cos > 0) {
+            return Double.POSITIVE_INFINITY;
+        } else if (Math.abs(sin) < 0.001 && cos < 0) {
+            return Double.NEGATIVE_INFINITY;
+        }
+
+        return cos / sin;
     }
 
 }

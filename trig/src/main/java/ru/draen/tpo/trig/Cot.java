@@ -1,19 +1,22 @@
 package ru.draen.tpo.trig;
 
-import ru.draen.tpo.core.AppFunction;
+import ru.draen.tpo.core.AbstractAppFunction;
 
-public class Cot implements AppFunction {
+public class Cot extends AbstractAppFunction {
 
     private final Sin sin = new Sin();
     private final Cos cos = new Cos();
 
     @Override
     public double calculate(double x, double eps) {
-        if (Math.abs(x % Math.PI) < eps) {
-            throw new IllegalArgumentException();
-        }
+        checkX(x, eps);
 
         return cos.calculate(x, eps) / sin.calculate(x, eps);
+    }
+
+    @Override
+    public boolean validateDomain(double x, double eps) {
+        return Math.abs(x % Math.PI) > eps;
     }
 
 }

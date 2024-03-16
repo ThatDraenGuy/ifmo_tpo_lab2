@@ -1,10 +1,10 @@
 package ru.draen.tpo.log;
 
-public class Ln extends LogFunction {
+public class Ln extends AbstractLogFunction {
 
     @Override
     public double calculate(double x, double eps) {
-        validateDomain(x);
+        checkX(x, eps);
 
         double constant = ((x - 1) * (x - 1)) / ((x + 1) * (x + 1));
 

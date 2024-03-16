@@ -8,4 +8,8 @@ public interface AppFunction {
         logger.log(x, eps, res);
         return res;
     }
+
+    default boolean validateDomain(double x, double eps) {
+        return true;
+    }
 }

@@ -1,5 +1,6 @@
 package ru.draen.tpo.app;
 
+import ru.draen.tpo.core.AbstractAppFunction;
 import ru.draen.tpo.core.AppFunction;
 import ru.draen.tpo.trig.Cos;
 import ru.draen.tpo.trig.Cot;
@@ -10,7 +11,7 @@ import ru.draen.tpo.trig.Tan;
 
 import static java.lang.Math.pow;
 
-public class TrigExpression implements AppFunction {
+public class TrigExpression extends AbstractAppFunction {
     private final Sin sin;
     private final Cos cos;
     private final Tan tan;
@@ -38,6 +39,8 @@ public class TrigExpression implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
+        checkX(x, eps);
+
         double sin = this.sin.calculate(x, eps);
         double cos = this.cos.calculate(x, eps);
         double tan = this.tan.calculate(x, eps);
@@ -53,6 +56,14 @@ public class TrigExpression implements AppFunction {
                 * (((sin / (sin / cos)) / pow((pow(pow((sin * tan), 3), 3) / cot), 2))
                         / (sin / (pow(tan, 2) - (tan * (pow(csc, 2) + pow((sec / (pow(sec, 2) - tan)), 2))))))),
                 2);
+    }
+
+    @Override
+    public boolean validateDomain(double x, double eps) {
+        double tan = this.tan.calculate(x, eps);
+        double csc = this.csc.calculate(x, eps);
+        double sec = this.sec.calculate(x, eps);
+        return Math.abs((pow(tan, 2) - (tan * (pow(csc, 2) + pow((sec / (pow(sec, 2) - tan)), 2))))) > eps;
     }
 
 }

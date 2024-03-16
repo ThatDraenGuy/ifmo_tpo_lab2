@@ -7,13 +7,11 @@ public class Sec implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
-        double cos = this.cos.calculate(x, eps);
-
-        if (Math.abs(cos) < 0.001) {
-            return Double.POSITIVE_INFINITY;
+        if (Math.abs((x - Math.PI / 2) % Math.PI) < eps) {
+            throw new IllegalArgumentException();
         }
 
-        return 1.0 / cos;
+        return 1.0 / cos.calculate(x, eps);
     }
 
 }

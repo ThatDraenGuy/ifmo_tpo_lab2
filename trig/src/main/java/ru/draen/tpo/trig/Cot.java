@@ -9,17 +9,11 @@ public class Cot implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
-
-        double sin = this.sin.calculate(x, eps);
-        double cos = this.cos.calculate(x, eps);
-
-        if (Math.abs(sin) < 0.001 && cos > 0) {
-            return Double.POSITIVE_INFINITY;
-        } else if (Math.abs(sin) < 0.001 && cos < 0) {
-            return Double.NEGATIVE_INFINITY;
+        if (Math.abs(x % Math.PI) < eps) {
+            throw new IllegalArgumentException();
         }
 
-        return cos / sin;
+        return cos.calculate(x, eps) / sin.calculate(x, eps);
     }
 
 }

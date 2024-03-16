@@ -7,13 +7,11 @@ public class Csc implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
-        double sin = this.sin.calculate(x, eps);
-
-        if (Math.abs(sin) < 0.001) {
-            return Double.POSITIVE_INFINITY;
+        if (Math.abs(x % Math.PI) < eps) {
+            throw new IllegalArgumentException();
         }
 
-        return 1.0 / sin;
+        return 1.0 / sin.calculate(x, eps);
     }
 
 }

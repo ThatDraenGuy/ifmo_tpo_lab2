@@ -9,16 +9,10 @@ public class Tan implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
-
-        double sin = this.sin.calculate(x, eps);
-        double cos = this.cos.calculate(x, eps);
-
-        if (Math.abs(cos) < 0.001 && sin > 0) {
-            return Double.POSITIVE_INFINITY;
-        } else if (Math.abs(cos) < 0.001 && sin < 0) {
-            return Double.NEGATIVE_INFINITY;
+        if (Math.abs((x - Math.PI / 2) % Math.PI) < eps) {
+            throw new IllegalArgumentException();
         }
 
-        return sin / cos;
+        return sin.calculate(x, eps) / cos.calculate(x, eps);
     }
 }

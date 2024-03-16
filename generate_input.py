@@ -1,6 +1,6 @@
 import numpy as np
 
-x = np.arange(-10, 10, 0.5)
+x = np.arange(-10, 10.5, 0.5)
 
 funcs = {
     "log": {
@@ -20,6 +20,7 @@ funcs = {
 }
 
 path_fill = "src/test/resources/in"
+mock_path = "app/src/test/resources/mock"
 
 for module in funcs:
     for func_name in funcs[module]:
@@ -33,4 +34,6 @@ for module in funcs:
         with open(file_name) as file:
             s = file.read().replace('nan', 'NaN')
         with open(file_name, 'w') as file:
+            file.write(s)
+        with open(f"./{mock_path}/{func_name}.csv", "w") as file:
             file.write(s)

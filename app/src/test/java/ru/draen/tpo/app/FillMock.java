@@ -23,7 +23,7 @@ public class FillMock {
                 double x = Double.parseDouble(values[0]);
                 double y = Double.parseDouble(values[1]);
                 when(function.calculate(eq(x), anyDouble())).thenReturn(y);
-                when(function.validateDomain(eq(x), anyDouble())).thenReturn(true);
+                when(function.validateDomain(eq(x), anyDouble())).thenReturn(!Double.isNaN(y));
             }
 
         } catch (IOException | CsvException ignored) {

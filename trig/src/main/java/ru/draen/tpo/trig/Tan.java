@@ -11,11 +11,11 @@ public class Tan extends AbstractAppFunction {
     public double calculate(double x, double eps) {
         checkX(x, eps);
 
-        return sin.calculate(x, eps) / cos.calculate(x, eps);
+        return sin.calculate(x, eps / 10) / cos.calculate(x, eps / 10);
     }
 
     @Override
     public boolean validateDomain(double x, double eps) {
-        return Math.abs((x - Math.PI / 2) % Math.PI) > eps;
+        return Math.abs((x - Math.PI / 2) % Math.PI) != 0;
     }
 }

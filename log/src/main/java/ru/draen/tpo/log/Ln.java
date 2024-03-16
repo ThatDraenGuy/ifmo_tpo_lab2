@@ -12,7 +12,7 @@ public class Ln extends AbstractLogFunction {
         double current = (x - 1) / (x + 1);
         int iteration = 1;
 
-        while (Math.abs(current) > eps / 4) {
+        while (Math.abs(current) > eps / 8) {
             sum += current;
             current = (2 * iteration - 1) * current * constant / (2 * iteration + 1);
             iteration++;

@@ -9,11 +9,11 @@ public class Csc extends AbstractAppFunction {
     public double calculate(double x, double eps) {
         checkX(x, eps);
 
-        return 1.0 / sin.calculate(x, eps);
+        return 1.0 / sin.calculate(x, eps / 10);
     }
 
     @Override
     public boolean validateDomain(double x, double eps) {
-        return Math.abs(x % Math.PI) > eps;
+        return Math.abs(x % Math.PI) != 0;
     }
 }

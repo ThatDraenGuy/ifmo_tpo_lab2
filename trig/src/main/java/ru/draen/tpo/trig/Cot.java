@@ -16,7 +16,7 @@ public class Cot extends AbstractAppFunction {
 
     @Override
     public boolean validateDomain(double x, double eps) {
-        return Math.abs(x % Math.PI) > eps;
+        return Math.abs(x % Math.PI) != 0;
     }
 
 }

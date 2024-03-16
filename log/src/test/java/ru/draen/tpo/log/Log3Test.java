@@ -1,6 +1,7 @@
 package ru.draen.tpo.log;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +41,16 @@ public class Log3Test {
             double res = log3.calculate(x, eps, logger);
             assertEquals(expected, res, eps);
         }
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/in/log3_illegal.csv")
+    @DisplayName("log3(x) illegal test")
+    void log3IllegalTest(double x) {
+        Log3 log3 = new Log3();
+        assertThrows(IllegalArgumentException.class, () -> {
+            log3.calculate(x, 0.1);
+        });
     }
 
 }

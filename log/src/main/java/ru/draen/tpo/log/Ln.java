@@ -1,14 +1,10 @@
 package ru.draen.tpo.log;
 
-import ru.draen.tpo.core.AppFunction;
-
-public class Ln implements AppFunction {
+public class Ln extends LogFunction {
 
     @Override
     public double calculate(double x, double eps) {
-        if (Math.abs(x) < 0.0001) {
-            return Double.NEGATIVE_INFINITY;
-        }
+        validateDomain(x);
 
         double constant = ((x - 1) * (x - 1)) / ((x + 1) * (x + 1));
 

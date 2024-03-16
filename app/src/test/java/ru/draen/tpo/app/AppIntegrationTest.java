@@ -33,8 +33,8 @@ public class AppIntegrationTest extends AbstractAppFunctionTest {
     private final LogExpression log = mock(LogExpression.class);
 
     {
-        fillMock(trig, "src/test/resources/in/trig.csv");
         fillMock(log, "src/test/resources/in/log.csv");
+        fillMock(trig, "src/test/resources/in/trig.csv");
     }
 
     @Override
@@ -51,6 +51,6 @@ public class AppIntegrationTest extends AbstractAppFunctionTest {
     @CsvFileSource(resources = "/in/app.csv")
     @DisplayName("app test")
     void logTest(double x, double expected) {
-        doTest(x, expected);
+        doTest(x, expected, true);
     }
 }

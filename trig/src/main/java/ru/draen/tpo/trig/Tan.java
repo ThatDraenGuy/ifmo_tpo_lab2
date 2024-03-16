@@ -11,7 +11,7 @@ public class Tan extends AbstractAppFunction {
     public double calculate(double x, double eps) {
         checkX(x, eps);
 
-        return sin.calculate(x, eps / 10) / cos.calculate(x, eps / 10);
+        return sin.calculate(x, eps / 20) / cos.calculate(x, eps / 20);
     }
 
     @Override

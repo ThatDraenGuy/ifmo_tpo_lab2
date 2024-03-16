@@ -28,6 +28,10 @@ public abstract class AbstractAppFunctionTest {
     }
 
     protected void doTest(double x, double expected) {
+        doTest(x, expected, false);
+    }
+
+    protected void doTest(double x, double expected, boolean doRelative) {
         AppFunction func = getAppFunction();
         for (double eps = 0.1; eps >= 0.0001; eps /= 10) {
             if (Double.isNaN(expected)) {
@@ -37,7 +41,8 @@ public abstract class AbstractAppFunctionTest {
                 });
             } else {
                 double res = func.calculate(x, eps, logger);
-                assertEquals(expected, res, eps);
+                double delta = doRelative ? Math.abs(eps * expected) : eps;
+                assertEquals(expected, res, delta);
             }
         }
     }

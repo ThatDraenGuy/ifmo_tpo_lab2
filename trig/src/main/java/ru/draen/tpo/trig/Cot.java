@@ -11,7 +11,7 @@ public class Cot extends AbstractAppFunction {
     public double calculate(double x, double eps) {
         checkX(x, eps);
 
-        return cos.calculate(x, eps / 10) / sin.calculate(x, eps / 10);
+        return cos.calculate(x, eps / 20) / sin.calculate(x, eps / 20);
     }
 
     @Override

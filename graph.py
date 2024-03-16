@@ -38,6 +38,6 @@ for (dir_name, _, files) in os.walk("."):
         plt.ylabel('y')
         plt.title(func_name)
         for eps in values:
-            plt.plot(values[eps]['x'], values[eps]['y'], label=eps)
-        plt.legend()
+            plt.scatter(values[eps]['x'], values[eps]['y'], label=eps, s=5)
+        plt.legend(loc='upper left')
         plt.savefig(os.path.join(graph_out_dir, f'{func_name}.png'))

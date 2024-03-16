@@ -9,7 +9,7 @@ public class Sec extends AbstractAppFunction {
     public double calculate(double x, double eps) {
         checkX(x, eps);
 
-        return 1.0 / cos.calculate(x, eps / 10);
+        return 1.0 / cos.calculate(x, eps / 20);
     }
 
     @Override

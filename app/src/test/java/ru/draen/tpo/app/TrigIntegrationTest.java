@@ -60,6 +60,6 @@ public class TrigIntegrationTest extends AbstractAppFunctionTest {
     @CsvFileSource(resources = "/in/trig.csv")
     @DisplayName("trig test")
     void trigTest(double x, double expected) {
-        doTest(x, expected);
+        doTest(x, expected, true);
     }
 }

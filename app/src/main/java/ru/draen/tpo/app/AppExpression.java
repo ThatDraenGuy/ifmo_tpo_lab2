@@ -1,8 +1,9 @@
 package ru.draen.tpo.app;
 
+import ru.draen.tpo.core.AbstractAppFunction;
 import ru.draen.tpo.core.AppFunction;
 
-public class AppExpression implements AppFunction {
+public class AppExpression extends AbstractAppFunction {
     private final TrigExpression trig;
     private final LogExpression log;
 
@@ -18,7 +19,12 @@ public class AppExpression implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
-        return x > 0 ? trig.calculate(x, eps) : log.calculate(x, eps);
+        checkX(x, eps);
+        return x <= 0 ? trig.calculate(x, eps) : log.calculate(x, eps);
     }
 
+    @Override
+    public boolean validateDomain(double x, double eps) {
+        return x <= 0 ? trig.validateDomain(x, eps) : log.validateDomain(x, eps);
+    }
 }

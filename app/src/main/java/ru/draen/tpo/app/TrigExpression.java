@@ -1,7 +1,6 @@
 package ru.draen.tpo.app;
 
 import ru.draen.tpo.core.AbstractAppFunction;
-import ru.draen.tpo.core.AppFunction;
 import ru.draen.tpo.trig.Cos;
 import ru.draen.tpo.trig.Cot;
 import ru.draen.tpo.trig.Csc;

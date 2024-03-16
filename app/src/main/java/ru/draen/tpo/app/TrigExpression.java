@@ -48,11 +48,11 @@ public class TrigExpression extends AbstractAppFunction {
         double sec = this.sec.calculate(x, eps);
 
         return pow(((pow((pow(
-                (((((pow((((((sin - csc) + sec) / sec) - tan) / (csc / sec)), 2) + sin) - pow(tan, 3)) / (sec * cot))
-                        + csc) + ((cos - pow((cot / cos), 2)) + (csc / ((cos - cos) + cos)))),
-                3) + (((tan + pow(tan, 3)) / (csc - (cos * sec))) - (cos - sin))), 2)
-                / (((csc * ((csc + cos) / sin)) * sec) + (cos - sin)))
-                * (((sin / (sin / cos)) / pow((pow(pow((sin * tan), 3), 3) / cot), 2))
+                        (((((pow((((((sin - csc) + sec) / sec) - tan) / (csc / sec)), 2) + sin) - pow(tan, 3)) / (sec * cot))
+                                + csc) + ((cos - pow((cot / cos), 2)) + (csc / ((cos - cos) + cos)))),
+                        3) + (((tan + pow(tan, 3)) / (csc - (cos * sec))) - (cos - sin))), 2)
+                        / (((csc * ((csc + cos) / sin)) * sec) + (cos - sin)))
+                        * (((sin / (sin / cos)) / pow((pow(pow((sin * tan), 3), 3) / cot), 2))
                         / (sin / (pow(tan, 2) - (tan * (pow(csc, 2) + pow((sec / (pow(sec, 2) - tan)), 2))))))),
                 2);
     }
@@ -62,14 +62,7 @@ public class TrigExpression extends AbstractAppFunction {
         double tan = this.tan.calculate(x, eps);
         double csc = this.csc.calculate(x, eps);
         double sec = this.sec.calculate(x, eps);
-        return Math.abs((pow(tan, 2) - (tan * (pow(csc, 2) + pow((sec / (pow(sec, 2) - tan)), 2))))) > eps &&
-                sin.validateDomain(x, eps) &&
-                cos.validateDomain(x, eps) &&
-                this.tan.validateDomain(x, eps) &&
-                cot.validateDomain(x, eps) &&
-                cot.validateDomain(x, eps) &&
-                this.csc.validateDomain(x, eps) &&
-                this.sec.validateDomain(x, eps);
+        return Math.abs((pow(tan, 2) - (tan * (pow(csc, 2) + pow((sec / (pow(sec, 2) - tan)), 2))))) > eps;
     }
 
 }

@@ -1,0 +1,5 @@
+# Enable auto-env through the sdkman_auto_env config
+# 1. Install SDKMAN
+# 2. Run `sdk env`
+java=17.0.4-zulu
+scala=2.13.8

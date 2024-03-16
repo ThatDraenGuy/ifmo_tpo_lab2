@@ -2,7 +2,7 @@ package ru.draen.tpo.log;
 
 import ru.draen.tpo.core.AppFunction;
 
-public class Log3 implements AppFunction {
+public class Log3 extends AbstractLogFunction {
     private final Ln ln = new Ln();
     private static final double LN3 = 1.09861228867;
 

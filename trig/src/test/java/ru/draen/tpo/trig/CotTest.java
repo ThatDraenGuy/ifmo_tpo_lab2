@@ -12,34 +12,27 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+import ru.draen.tpo.core.AbstractAppFunctionTest;
+import ru.draen.tpo.core.AppFunction;
 import ru.draen.tpo.core.CsvLogger;
 import ru.draen.tpo.core.FunctionLogger;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CotTest {
-    private FunctionLogger logger;
-    private final static String LOG_PATH = "src/test/resources/out/cot.csv";
+public class CotTest extends AbstractAppFunctionTest {
+    @Override
+    protected AppFunction getAppFunction() {
+        return new Cot();
+    }
 
-    @BeforeAll
-    void setup() {
-        try {
-            File file = new File(LOG_PATH);
-            file.createNewFile();
-            logger = new CsvLogger(LOG_PATH);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
+    @Override
+    protected String getLogPath() {
+        return "src/test/resources/out/cot.csv";
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/in/cot.csv")
     @DisplayName("cot(x) test")
     void cotTest(double x, double expected) {
-        Cot cot = new Cot();
-        for (double eps = 0.1; eps >= 0.0001; eps /= 10) {
-            double res = cot.calculate(x, eps, logger);
-            assertEquals(expected, res, eps);
-        }
+        doTest(x, expected);
     }
-
 }

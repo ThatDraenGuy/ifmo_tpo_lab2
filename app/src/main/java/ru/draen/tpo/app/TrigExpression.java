@@ -62,7 +62,14 @@ public class TrigExpression extends AbstractAppFunction {
         double tan = this.tan.calculate(x, eps);
         double csc = this.csc.calculate(x, eps);
         double sec = this.sec.calculate(x, eps);
-        return Math.abs((pow(tan, 2) - (tan * (pow(csc, 2) + pow((sec / (pow(sec, 2) - tan)), 2))))) > eps;
+        return Math.abs((pow(tan, 2) - (tan * (pow(csc, 2) + pow((sec / (pow(sec, 2) - tan)), 2))))) > eps &&
+                sin.validateDomain(x, eps) &&
+                cos.validateDomain(x, eps) &&
+                this.tan.validateDomain(x, eps) &&
+                cot.validateDomain(x, eps) &&
+                cot.validateDomain(x, eps) &&
+                this.csc.validateDomain(x, eps) &&
+                this.sec.validateDomain(x, eps);
     }
 
 }

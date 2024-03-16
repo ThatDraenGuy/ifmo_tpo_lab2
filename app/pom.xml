@@ -26,6 +26,13 @@
         </dependency>
         <dependency>
             <groupId>ru.draen.tpo</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>test</scope>
+            <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>ru.draen.tpo</groupId>
             <artifactId>trig</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

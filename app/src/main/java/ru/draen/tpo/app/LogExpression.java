@@ -36,7 +36,10 @@ public class LogExpression extends AbstractAppFunction {
 
     @Override
     public boolean validateDomain(double x, double eps) {
-        return Math.abs(log3.calculate(x, eps)) > eps;
+        return log3.validateDomain(x, eps) &&
+                log5.validateDomain(x, eps) &&
+                log10.validateDomain(x, eps) &&
+                Math.abs(log3.calculate(x, eps)) > eps;
     }
 
 }

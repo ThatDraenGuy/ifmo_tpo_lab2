@@ -13,44 +13,28 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+import ru.draen.tpo.core.AbstractAppFunctionTest;
+import ru.draen.tpo.core.AppFunction;
 import ru.draen.tpo.core.CsvLogger;
 import ru.draen.tpo.core.FunctionLogger;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class Log10Test {
-    private FunctionLogger logger;
-    private final static String LOG_PATH = "src/test/resources/out/log10.csv";
+public class Log10Test extends AbstractAppFunctionTest {
+    @Override
+    protected AppFunction getAppFunction() {
+        return new Log10();
+    }
 
-    @BeforeAll
-    void setup() {
-        try {
-            File file = new File(LOG_PATH);
-            file.createNewFile();
-            logger = new CsvLogger(LOG_PATH);
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
+    @Override
+    protected String getLogPath() {
+        return "src/test/resources/out/log10.csv";
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/in/log10.csv")
     @DisplayName("log10(x) test")
     void log10Test(double x, double expected) {
-        Log10 log10 = new Log10();
-        for (double eps = 0.1; eps >= 0.0001; eps /= 10) {
-            double res = log10.calculate(x, eps, logger);
-            assertEquals(expected, res, eps);
-        }
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/in/log10_illegal.csv")
-    @DisplayName("log10(x) illegal test")
-    void log10IllegalTest(double x) {
-        Log10 log10 = new Log10();
-        assertThrows(IllegalArgumentException.class, () -> {
-            log10.calculate(x, 0.1);
-        });
+        doTest(x, expected);
     }
 
 }

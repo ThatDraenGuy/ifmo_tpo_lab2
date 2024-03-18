@@ -28,7 +28,7 @@ public class AppIntegrationTest extends AbstractAppFunctionTest {
 
     @Override
     protected String getLogPath() {
-        return "src/test/resources/out/app.csv";
+        return "src/test/resources/out_mocked/app.csv";
     }
 
     @ParameterizedTest

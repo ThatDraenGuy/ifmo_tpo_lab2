@@ -28,7 +28,7 @@ public class TrigIntegrationTest extends AbstractAppFunctionTest {
 
     @Override
     protected String getLogPath() {
-        return "src/test/resources/out/trig.csv";
+        return "src/test/resources/out_mocked/trig.csv";
     }
 
     {

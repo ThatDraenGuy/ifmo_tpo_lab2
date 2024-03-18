@@ -50,6 +50,17 @@ funcs = {
     }
 }
 
+additional_vals = {
+    "trig": {
+        "tan": [
+            np.pi / 2,
+            -np.pi / 2,
+            3 * np.pi / 2,
+            -3 * np.pi / 2
+        ]
+    }
+}
+
 path_fills = [
     "src/test/resources/in",
     "src/test/resources/mock"
@@ -69,6 +80,9 @@ for module in funcs:
             np.savetxt(file_name, values, delimiter=',\t')
             with open(file_name) as file:
                 s = file.read().replace('nan', 'NaN')
+                vals = additional_vals.get(module, {}).get(func_name, [])
+                for val in vals:
+                    s += f'{val}, NaN\n'
             with open(file_name, 'w') as file:
                 file.write(s)
             with open(f"./{mock_path}/{func_name}.csv", "w") as file:

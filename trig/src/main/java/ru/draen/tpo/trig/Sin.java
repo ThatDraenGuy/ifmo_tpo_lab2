@@ -15,8 +15,9 @@ public class Sin implements AppFunction {
 
     @Override
     public double calculate(double x, double eps) {
-        x = Math.PI / 2 - x;
-        return cos.calculate(x, eps);
+        int sign = Math.abs(x) % (Math.PI * 2) <= Math.PI ? 1 : -1;
+        sign = x >= 0 ? sign : -sign;
+        return sign * Math.sqrt(1 - Math.pow(cos.calculate(x, eps), 2));
     }
 
 }

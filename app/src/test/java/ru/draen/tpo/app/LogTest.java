@@ -23,7 +23,7 @@ public class LogTest extends AbstractAppFunctionTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/in/log.csv")
     @DisplayName("log(x) test")
-    void cosTest(double x, double expected) {
-        doTest(x, expected);
+    void logTest(double x, double expected) {
+        doTest(x, expected, true);
     }
 }

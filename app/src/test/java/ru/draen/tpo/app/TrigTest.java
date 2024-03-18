@@ -23,7 +23,7 @@ public class TrigTest extends AbstractAppFunctionTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/in/trig.csv")
     @DisplayName("trig(x) test")
-    void cosTest(double x, double expected) {
-        doTest(x, expected);
+    void trigTest(double x, double expected) {
+        doTest(x, expected, true);
     }
 }

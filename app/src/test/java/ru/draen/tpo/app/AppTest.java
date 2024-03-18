@@ -23,7 +23,7 @@ public class AppTest extends AbstractAppFunctionTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/in/app.csv")
     @DisplayName("app(x) test")
-    void cosTest(double x, double expected) {
-        doTest(x, expected);
+    void appTest(double x, double expected) {
+        doTest(x, expected, true);
     }
 }

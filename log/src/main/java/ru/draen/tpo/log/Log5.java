@@ -14,6 +14,7 @@ public class Log5 extends AbstractLogFunction {
 
     @Override
     public double calculate(double x, double eps) {
+        checkX(x, eps);
         return ln.calculate(x, eps) / LN5;
     }
 }

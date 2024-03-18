@@ -1,10 +1,12 @@
 import numpy as np
+import re
 import pathlib
 
 x = np.array(
     list(np.arange(-10, 10.5, 0.5)) +
     [ -4.435, -4.006, -3.892, -1.364 ] +
-    [ -14.621, -8.412, -5.196, -2.129, -2.055 ]
+    [ -14.621, -8.412, -5.196, -2.129, -2.055 ] +
+    [ -2* np.pi, -3 * np.pi /2, -np.pi, -np.pi /2, np.pi /2,  np.pi, 3 * np.pi /2, 2* np.pi ]
 ) 
 
 def trig_func(x):
@@ -53,10 +55,44 @@ funcs = {
 additional_vals = {
     "trig": {
         "tan": [
-            np.pi / 2,
+            -3 * np.pi / 2,
             -np.pi / 2,
+            np.pi / 2,
             3 * np.pi / 2,
+        ],
+        "sec": [
+            -3 * np.pi / 2,
+            -np.pi / 2,
+            np.pi / 2,
+            3 * np.pi / 2,
+        ],
+        "cot": [
+            -2 * np.pi,
+            -np.pi,
+            np.pi,
+            2 * np.pi,
+        ],
+        "csc": [
+            -2 * np.pi,
+            -np.pi,
+            np.pi,
+            2 * np.pi,
+        ],
+        "trig": [
+            -3 * np.pi / 2,
+            -np.pi / 2,
+            -2 * np.pi
+            -np.pi,
+            np.pi,
+            2 * np.pi,
+            np.pi / 2,
+            3 * np.pi / 2,
+        ],
+        "app": [
             -3 * np.pi / 2
+            -np.pi / 2,
+            -2 * np.pi
+            -np.pi,
         ]
     }
 }
@@ -81,8 +117,17 @@ for module in funcs:
             with open(file_name) as file:
                 s = file.read().replace('nan', 'NaN')
                 vals = additional_vals.get(module, {}).get(func_name, [])
+                vals.sort()
+                print(vals)
                 for val in vals:
-                    s += f'{val}, NaN\n'
+                    # pattern = re.escape(f'{val:.18e}') + '.*\n' if val >=0 else '\n(' + re.escape(f'{val:.18e}') + '.*\n)'
+                    # s = re.sub(pattern, '', s)
+                    # print(pattern)
+                    if val >= 0:
+                        s = re.sub('-?' + re.escape(f'{val:.18e}') + '.*\n', '', s)
+                    else:
+                        s = re.sub(re.escape(f'{val:.18e}') + '.*\n', '', s)
+                    s += f'{val:.18e}, NaN\n'
             with open(file_name, 'w') as file:
                 file.write(s)
             with open(f"./{mock_path}/{func_name}.csv", "w") as file:

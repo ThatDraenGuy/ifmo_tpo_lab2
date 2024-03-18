@@ -1,7 +1,7 @@
 package ru.draen.tpo.app;
 
 import static org.mockito.Mockito.mock;
-import static ru.draen.tpo.app.FillMock.fillMock;
+import static ru.draen.tpo.core.FillMock.fillMock;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;

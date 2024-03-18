@@ -1,4 +1,4 @@
-package ru.draen.tpo.app;
+package ru.draen.tpo.core;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;

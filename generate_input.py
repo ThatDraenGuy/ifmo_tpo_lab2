@@ -1,4 +1,5 @@
 import numpy as np
+import pathlib
 
 x = np.arange(-10, 10.5, 0.5)
 
@@ -45,7 +46,10 @@ funcs = {
     }
 }
 
-path_fill = "src/test/resources/in"
+path_fills = [
+    "src/test/resources/in",
+    "src/test/resources/mock"
+]
 mock_path = "app/src/test/resources/mock"
 
 for module in funcs:
@@ -55,11 +59,13 @@ for module in funcs:
         values = np.array([x, func(x)]).T
         values[:,1] = values[:,1].astype(object)
         values[np.isinf(values[:,1]),1] = np.nan
-        file_name = f"./{module}/{path_fill}/{func_name}.csv"
-        np.savetxt(file_name, values, delimiter=',\t')
-        with open(file_name) as file:
-            s = file.read().replace('nan', 'NaN')
-        with open(file_name, 'w') as file:
-            file.write(s)
-        with open(f"./{mock_path}/{func_name}.csv", "w") as file:
-            file.write(s)
+        for path_fill in path_fills:
+            file_name = pathlib.Path(f"./{module}/{path_fill}/{func_name}.csv")
+            file_name.parent.mkdir(exist_ok=True, parents=True)
+            np.savetxt(file_name, values, delimiter=',\t')
+            with open(file_name) as file:
+                s = file.read().replace('nan', 'NaN')
+            with open(file_name, 'w') as file:
+                file.write(s)
+            with open(f"./{mock_path}/{func_name}.csv", "w") as file:
+                file.write(s)

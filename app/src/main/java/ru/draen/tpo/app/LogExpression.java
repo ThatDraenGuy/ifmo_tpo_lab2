@@ -1,6 +1,7 @@
 package ru.draen.tpo.app;
 
 import ru.draen.tpo.core.AbstractAppFunction;
+import ru.draen.tpo.log.Ln;
 import ru.draen.tpo.log.Log10;
 import ru.draen.tpo.log.Log3;
 import ru.draen.tpo.log.Log5;
@@ -13,9 +14,16 @@ public class LogExpression extends AbstractAppFunction {
     private final Log10 log10;
 
     public LogExpression() {
-        this.log3 = new Log3();
-        this.log5 = new Log5();
-        this.log10 = new Log10();
+        Ln ln = new Ln();
+        this.log3 = new Log3(ln);
+        this.log5 = new Log5(ln);
+        this.log10 = new Log10(ln);
+    }
+
+    public LogExpression(Ln ln) {
+        this.log3 = new Log3(ln);
+        this.log5 = new Log5(ln);
+        this.log10 = new Log10(ln);
     }
 
     public LogExpression(Log3 log3, Log5 log5, Log10 log10) {

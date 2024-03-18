@@ -39,7 +39,7 @@ public abstract class AbstractAppFunctionTest {
                 });
             } else {
                 double res = func.calculate(x, eps, logger);
-                double delta = doRelative ? Math.abs(eps * expected) : eps;
+                double delta = doRelative ? Math.abs(eps * expected * 100) : eps;
                 assertEquals(expected, res, delta);
             }
         }

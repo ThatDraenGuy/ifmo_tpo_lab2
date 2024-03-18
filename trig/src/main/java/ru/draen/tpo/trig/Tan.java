@@ -4,8 +4,18 @@ import ru.draen.tpo.core.AbstractAppFunction;
 
 public class Tan extends AbstractAppFunction {
 
-    private final Sin sin = new Sin();
-    private final Cos cos = new Cos();
+    private final Sin sin;
+    private final Cos cos;
+
+    public Tan() {
+        sin = new Sin();
+        cos = new Cos();
+    }
+
+    public Tan(Sin sin, Cos cos) {
+        this.sin = sin;
+        this.cos = cos;
+    }
 
     @Override
     public double calculate(double x, double eps) {

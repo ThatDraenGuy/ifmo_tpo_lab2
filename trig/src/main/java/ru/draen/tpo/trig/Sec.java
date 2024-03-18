@@ -3,7 +3,15 @@ package ru.draen.tpo.trig;
 import ru.draen.tpo.core.AbstractAppFunction;
 
 public class Sec extends AbstractAppFunction {
-    private final Cos cos = new Cos();
+    private final Cos cos;
+
+    public Sec() {
+        cos = new Cos();
+    }
+
+    public Sec(Cos cos) {
+        this.cos = cos;
+    }
 
     @Override
     public double calculate(double x, double eps) {

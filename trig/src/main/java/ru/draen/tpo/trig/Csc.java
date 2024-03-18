@@ -3,7 +3,15 @@ package ru.draen.tpo.trig;
 import ru.draen.tpo.core.AbstractAppFunction;
 
 public class Csc extends AbstractAppFunction {
-    private final Sin sin = new Sin();
+    private final Sin sin;
+
+    public Csc() {
+        sin = new Sin();
+    }
+
+    public Csc(Sin sin) {
+        this.sin = sin;
+    }
 
     @Override
     public double calculate(double x, double eps) {

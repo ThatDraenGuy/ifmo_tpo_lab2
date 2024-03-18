@@ -4,8 +4,18 @@ import ru.draen.tpo.core.AbstractAppFunction;
 
 public class Cot extends AbstractAppFunction {
 
-    private final Sin sin = new Sin();
-    private final Cos cos = new Cos();
+    private final Sin sin;
+    private final Cos cos;
+
+    public Cot() {
+        sin = new Sin();
+        cos = new Cos();
+    }
+
+    public Cot(Sin sin, Cos cos) {
+        this.sin = sin;
+        this.cos = cos;
+    }
 
     @Override
     public double calculate(double x, double eps) {

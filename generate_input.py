@@ -1,7 +1,11 @@
 import numpy as np
 import pathlib
 
-x = np.arange(-10, 10.5, 0.5)
+x = np.array(
+    list(np.arange(-10, 10.5, 0.5)) +
+    [ -4.435, -4.006, -3.892, -1.364 ] +
+    [ -14.621, -8.412, -5.196, -2.129, -2.055 ]
+) 
 
 def trig_func(x):
     sin = np.sin

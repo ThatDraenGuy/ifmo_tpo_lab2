@@ -1,31 +1,15 @@
 package ru.draen.tpo.app;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyDouble;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static ru.draen.tpo.app.FillMock.fillMock;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
-
 import ru.draen.tpo.core.AbstractAppFunctionTest;
 import ru.draen.tpo.core.AppFunction;
-import ru.draen.tpo.core.CsvLogger;
-import ru.draen.tpo.core.FunctionLogger;
 import ru.draen.tpo.log.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

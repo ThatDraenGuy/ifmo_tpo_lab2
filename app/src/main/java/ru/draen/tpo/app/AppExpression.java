@@ -1,7 +1,6 @@
 package ru.draen.tpo.app;
 
 import ru.draen.tpo.core.AbstractAppFunction;
-import ru.draen.tpo.core.AppFunction;
 
 public class AppExpression extends AbstractAppFunction {
     private final TrigExpression trig;

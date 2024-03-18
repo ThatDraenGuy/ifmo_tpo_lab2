@@ -1,8 +1,6 @@
 package ru.draen.tpo.core;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;

@@ -18,7 +18,6 @@ public class CscMockedTest extends AbstractAppFunctionTest {
         fillMock(mockedSin, "src/test/resources/mock/sin.csv");
     }
 
-
     @Override
     protected AppFunction getAppFunction() {
         return new Csc(mockedSin);

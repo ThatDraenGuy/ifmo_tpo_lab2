@@ -20,7 +20,6 @@ public class CotMockedTest extends AbstractAppFunctionTest {
         fillMock(mockedSin, "src/test/resources/mock/sin.csv");
     }
 
-
     @Override
     protected AppFunction getAppFunction() {
         return new Cot(mockedSin, mockedCos);
